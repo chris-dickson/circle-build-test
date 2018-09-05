@@ -17,7 +17,7 @@ jobs:
             echo "The branch is ${CIRCLE_BRANCH}"
             TELLFINDER_TAG="latest"
 
-            if [[ "${CIRCLE_BRANCH}" =~ "release\/.*"]]; then
+            if [[ "${CIRCLE_BRANCH}" =~ "release\/.*" ]]; then
               TELLFINDER_TAG=`echo "${CIRCLE_BRANCH//release\//}"`
             fi
 
