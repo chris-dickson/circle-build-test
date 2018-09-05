@@ -31,3 +31,9 @@ jobs:
       # build
       - run: |
           echo "Hello world!"
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - build
