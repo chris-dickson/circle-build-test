@@ -12,7 +12,7 @@ jobs:
           name: Print the Current Time
           command: date
       - run: |
-        echo "The branch is ${CIRCLE_BRANCH}"
+          echo "The branch is ${CIRCLE_BRANCH}"
 
 workflows:
   version: 2
