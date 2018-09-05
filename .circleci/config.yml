@@ -19,7 +19,6 @@ jobs:
             RELEASE_REGEX="release\/.*"
 
             if [[ ${CIRCLE_BRANCH} =~ ${RELEASE_REGEX} ]]; then
-              echo "Setting tag to release number"
               TELLFINDER_TAG=${CIRCLE_BRANCH//release\//}
             fi
 
