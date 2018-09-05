@@ -15,8 +15,8 @@ jobs:
           echo "The branch is ${CIRCLE_BRANCH}"
           TELLFINDER_TAG=`echo "${CIRCLE_BRANCH//release\//}"`
           echo "The tellfinder build tag is ${TELLFINDER_TAG}"
-          echo "export TELLFINDER_TAG=${TELLFINDER_TAG}"
-#          source $BASH_ENV
+          echo "export TELLFINDER_TAG=${TELLFINDER_TAG}" >> $BASH_ENV
+          source $BASH_ENV
 
       - run: |
           echo "The tellfinder build tag is ${TELLFINDER_TAG}"
