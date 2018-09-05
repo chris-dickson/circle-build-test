@@ -3,6 +3,8 @@ jobs:
   build:
     docker:
       - image: debian:stretch
+    environment:
+      TELLFINDER_TAG: "${CIRCLE_BRANCH//release\//}"
     steps:
       - checkout
       - run:
@@ -13,8 +15,8 @@ jobs:
           command: date
       - run: |
           echo "The branch is ${CIRCLE_BRANCH}"
-          TELLFINDER_TAG=`echo "${CIRCLE_BRANCH//release\//}"`
-          echo "The tellfinder build tag is ${TELLFINDER_TAG}"
+#          TELLFINDER_TAG=`echo "${CIRCLE_BRANCH//release\//}"`
+#          echo "The tellfinder build tag is ${TELLFINDER_TAG}"
       - run: |
           echo "The tellfinder build tag is ${TELLFINDER_TAG}"
 
