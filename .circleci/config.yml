@@ -16,10 +16,11 @@ jobs:
           command: |
             echo "The branch is ${CIRCLE_BRANCH}"
             TELLFINDER_TAG="latest"
-            RELEASE_REGEX="^(release\/.*)"
+            RELEASE_REGEX="release\/.*"
 
-            if [[ ${CIRCLE_BRANCH} =~ RELEASE_REGEX ]]; then
-              TELLFINDER_TAG=`echo "${CIRCLE_BRANCH//release\//}"`
+            if [[ ${CIRCLE_BRANCH} =~ ${RELEASE_REGEX} ]]; then
+              echo "Setting tag to release number"
+              TELLFINDER_TAG=${CIRCLE_BRANCH//release\//}
             fi
 
             echo "The tellfinder build tag is ${TELLFINDER_TAG}"
