@@ -11,3 +11,13 @@ jobs:
       - run:
           name: Print the Current Time
           command: date
+
+workflows:
+  version: 2
+  run-the-build:
+    jobs:
+      - build:
+          filters:
+            branches:
+              only:
+                - master
