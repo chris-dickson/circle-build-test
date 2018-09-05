@@ -11,8 +11,23 @@ jobs:
       - run:
           name: Print the Current Time
           command: date
+      - run:
+          name: Compute the TellFinder build tag from the branch
+          command: |
+            echo "The branch is ${CIRCLE_BRANCH}"
+            TELLFINDER_TAG="latest"
+            RELEASE_REGEX="^release\/.*"
+
+            if [[ ${CIRCLE_BRANCH} =~ ${RELEASE_REGEX} ]]; then
+              TELLFINDER_TAG=${CIRCLE_BRANCH//release\//}
+            fi
+
+            echo "The tellfinder build tag is ${TELLFINDER_TAG}"
+            echo "export TELLFINDER_TAG=${TELLFINDER_TAG}" >> $BASH_ENV
+            source $BASH_ENV
+
       - run: |
-          echo "The branch is ${CIRCLE_BRANCH}"
+          echo "The tellfinder build tag is ${TELLFINDER_TAG}"
 
 workflows:
   version: 2
@@ -23,4 +38,4 @@ workflows:
             branches:
               only:
                 - master
-                - /release\/.*/
+                - /^release\/.*/
