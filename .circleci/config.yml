@@ -27,4 +27,4 @@ jobs:
 
       # build
       - run |
-        echo "Hello Circle"
+          echo "Hello Circle poke"
