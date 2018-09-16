@@ -16,7 +16,7 @@ jobs:
           command: npm install
       - run:
           name: Run linter
-          command: gulp lint
+          command: npm run lint
       - run:
           name: Compute the TellFinder build tag from the branch
           command: |
