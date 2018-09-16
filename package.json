@@ -1,0 +1,24 @@
+{
+  "name": "circle-build-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chris-dickson/circle-build-test.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chris-dickson/circle-build-test/issues"
+  },
+  "homepage": "https://github.com/chris-dickson/circle-build-test#readme",
+  "dependencies": {
+    "babel-eslint": "^9.0.0",
+    "gulp": "^3.9.1",
+    "gulp-eslint": "^5.0.0"
+  }
+}

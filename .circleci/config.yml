@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: debian:stretch
+      - image: uncharted/circleci:openjdk-8-jdk-nodejs
     steps:
       - checkout
       - run:
@@ -11,6 +11,12 @@ jobs:
       - run:
           name: Print the Current Time
           command: date
+      - run:
+          name: Install Dependencies
+          command: npm install
+      - run:
+          name: Run linter
+          command: gulp lint
       - run:
           name: Compute the TellFinder build tag from the branch
           command: |
@@ -29,13 +35,3 @@ jobs:
       - run: |
           echo "The tellfinder build tag is ${TELLFINDER_TAG}"
 
-workflows:
-  version: 2
-  run-the-build:
-    jobs:
-      - build:
-          filters:
-            branches:
-              only:
-                - master
-                - /^release\/.*/
