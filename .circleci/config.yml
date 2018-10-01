@@ -43,10 +43,7 @@ jobs:
       - run: |
           cd .circleci/scripts/
           npm install
-          node get_ticket.js
-
-          echo "Project: ${JIRA_PROJECT}"
-          echo "Ticket: ${JIRA_TICKET}"
+          node validate_ticket.js
 
 workflows:
   version: 2
