@@ -36,7 +36,7 @@ jobs:
             fi
 
             echo "export TELLFINDER_TAG=${TELLFINDER_TAG}" >> $BASH_ENV
-            source $BASH_ENV
+            source $BASH_ENV 
 
       - run: |
           echo "The tellfinder build tag is ${TELLFINDER_TAG}"
