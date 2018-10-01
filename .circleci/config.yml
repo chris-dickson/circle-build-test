@@ -28,9 +28,7 @@ jobs:
               echo "Building feature or bugfix branch. Docker containers will not be pushed."
               cd .circleci/scripts/
               npm install
-              node get_ticket.js
-              echo "The Jira project is ${JIRA_PROJECT}"
-              echo "The Jira ticket is ${JIRA_TICKET}"
+              node validate_ticket.js
             else
               echo "The tellfinder build tag is ${TELLFINDER_TAG}"
             fi
@@ -40,10 +38,6 @@ jobs:
 
       - run: |
           echo "The tellfinder build tag is ${TELLFINDER_TAG}"
-      - run: |
-          cd .circleci/scripts/
-          npm install
-          node validate_ticket.js
 
 workflows:
   version: 2
