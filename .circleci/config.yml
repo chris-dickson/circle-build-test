@@ -45,6 +45,8 @@ jobs:
           npm install
           node get_ticket.js
 
+          echo "Project: ${JIRA_PROJECT}"
+          echo "Ticket: ${JIRA_TICKET}"
 
 workflows:
   version: 2

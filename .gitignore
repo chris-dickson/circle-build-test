@@ -1,1 +1,2 @@
 .idea
+.circleci/scripts/node_modules
