@@ -36,8 +36,9 @@ jobs:
       - run: |
           echo "The tellfinder build tag is ${TELLFINDER_TAG}"
       - run: |
-          #!/usr/bin/env node
-          console.log('Executing node in circle command!'
+          cd .circleci/scripts/
+          npm install
+          node get_ticket.js
 
 
 workflows:
