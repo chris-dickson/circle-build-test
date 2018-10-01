@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: debian:stretch
+      - image: uncharted/circleci:openjdk-8-jdk-nodejs
     steps:
       - checkout
       - run:
@@ -15,19 +15,30 @@ jobs:
           name: Compute the TellFinder build tag from the branch
           command: |
             echo "The branch is ${CIRCLE_BRANCH}"
-            TELLFINDER_TAG="latest"
             RELEASE_REGEX="^release\/.*"
 
+            TELLFINDER_TAG="unpushed"
             if [[ ${CIRCLE_BRANCH} =~ ${RELEASE_REGEX} ]]; then
               TELLFINDER_TAG=${CIRCLE_BRANCH//release\//}
+            elif [ ${CIRCLE_BRANCH} == "master" ]; then
+              TELLFINDER_TAG="latest"
             fi
 
-            echo "The tellfinder build tag is ${TELLFINDER_TAG}"
+            if [ "${TELLFINDER_TAG}" == "unpushed" ]; then
+              echo "Building feature or bugfix branch. Docker containers will not be pushed."
+            else
+              echo "The tellfinder build tag is ${TELLFINDER_TAG}"
+            fi
+
             echo "export TELLFINDER_TAG=${TELLFINDER_TAG}" >> $BASH_ENV
             source $BASH_ENV
 
       - run: |
           echo "The tellfinder build tag is ${TELLFINDER_TAG}"
+      - run: |
+          #!/usr/bin/env node
+          console.log('Executing node in circle command!'
+
 
 workflows:
   version: 2
