@@ -24,27 +24,11 @@ jobs:
               TELLFINDER_TAG="latest"
             fi
 
-            if [ "${TELLFINDER_TAG}" == "unpushed" ]; then
-              echo "Building feature or bugfix branch. Docker containers will not be pushed."
-              cd .circleci/scripts/
-              npm install
-              node get_ticket.js
-              echo "The Jira project is ${JIRA_PROJECT}"
-              echo "The Jira ticket is ${JIRA_TICKET}"
-            else
-              echo "The tellfinder build tag is ${TELLFINDER_TAG}"
-            fi
-
             echo "export TELLFINDER_TAG=${TELLFINDER_TAG}" >> $BASH_ENV
             source $BASH_ENV
 
       - run: |
           echo "The tellfinder build tag is ${TELLFINDER_TAG}"
-      - run: |
-          cd .circleci/scripts/
-          npm install
-          node get_ticket.js
-
 
 workflows:
   version: 2
