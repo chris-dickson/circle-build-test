@@ -3,6 +3,7 @@
 (async () => {
   const nodegit = require('nodegit');
   const path = require('path');
+  const semver = require('semver-utils');
 
   const repository = await nodegit.Repository.open(path.resolve(__dirname, '.git'));
   const statuses = await repository.getStatus();
@@ -16,8 +17,11 @@
   // Get the latest two versions
   const references = await repository.getReferenceNames(3);
 
-  const releases = references.filter((reference) => reference.startsWith('refs/heads/release/'))
-    .map((reference) => reference.replace('refs/heads/release/',''));
+  const production
+
+  const versions = references.filter((reference) => reference.startsWith('refs/heads/release/'))
+    .map((reference) => reference.replace('refs/heads/release/',''))
+    .map((version) => semver.parse(version));
 
   console.log(references.length);
 
